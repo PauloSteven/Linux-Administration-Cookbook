@@ -1,0 +1,30 @@
+Host omd*
+User ocdn_adm
+
+Host omd1-*
+Hostname %h.synamedia.lab
+
+Host omd*
+Hostname %h.omd1.tac.krk.synamedialabs.com
+
+
+# Video Network Kubernetes Cluster
+Host vn-*
+User vnadmin
+
+Host vn-master-0
+  Hostname 10.50.214.62
+Host vn-master-1
+  Hostname 10.50.214.63
+Host vn-master-2
+  Hostname 10.50.214.64
+Host vn-node-0
+  Hostname 10.50.214.65
+Host vn-node-1
+  Hostname 10.50.214.66
+
+
+Host *
+ServerAliveInterval 120
+ControlMaster auto
+ControlPath /tmp/%r@%h:%p
