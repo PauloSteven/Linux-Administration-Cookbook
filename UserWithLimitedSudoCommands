@@ -1,0 +1,29 @@
+Set Up a user that can run only some command with sudo:
+
+    Create a new sudoers file in the /etc/sudoers.d directory that will contain a standalone entry for webmasters:
+
+     sudo visudo -f /etc/sudoers.d/web_admin
+
+    Enter in the following at the top of the file:
+
+     Cmnd_Alias  WEB = /bin/systemctl restart httpd.service, /bin/systemctl reload httpd.service
+
+    Add another line in the file for gfreeman to be able to use the sudo command in conjunction with any commands listed in the WEB alias:
+
+     gfreeman ALL=WEB
+
+    Save and close the file with :wq!.
+
+    Next, log in to the gfreeman account:
+
+     sudo su - gfreeman
+
+    Attempt to restart the web service:
+
+     sudo systemctl restart httpd.service
+
+    Try to read the new web_admin sudoers file:
+
+     sudo cat /etc/sudoers.d/web_admin
+
+    Since the cat command is not listed in the command alias group for WEB, gfreeman cannot use sudo to read this file.
