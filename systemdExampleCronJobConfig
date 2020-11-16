@@ -1,0 +1,24 @@
+Systemd service unit configuration file example
+[Unit]
+Description=Backup the web site, every day, or the boss will be mad
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/web-backup.sh
+
+[Install]
+WantedBy=multi-user.target
+
+...................................................
+
+Systemd timer unit configuration example
+[Unit]
+Description=Fire off the backup
+
+[Timer]
+OnCalendar=*-*-* 23:00:00
+Persistent=true
+Unit=web-backup.service
+
+[Install]
+WantedBy=multi-user.target
